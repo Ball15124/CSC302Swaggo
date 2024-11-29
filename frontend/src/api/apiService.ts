@@ -1,6 +1,6 @@
-import { DefaultApiFactory } from "./api";
-import { Configuration } from "./configuration";
+import {Configuration} from "./configuration.ts";
+import {AuthApiFactory} from "./api.ts";
 
-const cfg:Configuration = new Configuration()
+const cfg = new Configuration()
 
-export const apiService:{authLoginPost(dtos.LoginRequest=)}
+export const apiService = AuthApiFactory(cfg)
