@@ -5,11 +5,20 @@ import "github.com/swaggo/swag"
 
 const docTemplate = `{
     "schemes": {{ marshal .Schemes }},
+    "produces": [
+        "application/json"
+    ],
     "swagger": "2.0",
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {},
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support"
+        },
+        "license": {
+            "name": "Apache 2.0"
+        },
         "version": "{{.Version}}"
     },
     "host": "{{.Host}}",
@@ -18,11 +27,20 @@ const docTemplate = `{
         "/auth/login": {
             "post": {
                 "description": "Login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
                 "summary": "Login",
                 "parameters": [
                     {
                         "description": "LoginRequest",
-                        "name": "request",
+                        "name": "loginRequest",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -43,11 +61,20 @@ const docTemplate = `{
         "/auth/register": {
             "post": {
                 "description": "Register",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
                 "summary": "Register",
                 "parameters": [
                     {
                         "description": "RegisterRequest",
-                        "name": "request",
+                        "name": "registerRequest",
                         "in": "body",
                         "required": true,
                         "schema": {
@@ -111,12 +138,12 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "2.5",
-	Host:             "",
-	BasePath:         "",
-	Schemes:          []string{},
-	Title:            "Swinging Example API",
-	Description:      "Kuy Hee Kuy Hee",
+	Version:          "1.0",
+	Host:             "localhost:8000",
+	BasePath:         "/",
+	Schemes:          []string{"http"},
+	Title:            "Swagger Example API",
+	Description:      "This is a sample server Petstore server.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

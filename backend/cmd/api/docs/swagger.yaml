@@ -1,3 +1,4 @@
+basePath: /
 definitions:
   dtos.LoginRequest:
     properties:
@@ -24,42 +25,63 @@ definitions:
       username:
         type: string
     type: object
+host: localhost:8000
 info:
-  contact: {}
-  description: Kuy Hee Kuy Hee
-  title: Swinging Example API
-  version: "2.5"
+  contact:
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+  title: Swagger Example API
+  version: "1.0"
 paths:
   /auth/login:
     post:
+      consumes:
+      - application/json
       description: Login
       parameters:
       - description: LoginRequest
         in: body
-        name: request
+        name: loginRequest
         required: true
         schema:
           $ref: '#/definitions/dtos.LoginRequest'
+      produces:
+      - application/json
       responses:
         "200":
           description: OK
           schema:
             $ref: '#/definitions/dtos.LoginResponse'
       summary: Login
+      tags:
+      - auth
   /auth/register:
     post:
+      consumes:
+      - application/json
       description: Register
       parameters:
       - description: RegisterRequest
         in: body
-        name: request
+        name: registerRequest
         required: true
         schema:
           $ref: '#/definitions/dtos.RegisterRequest'
+      produces:
+      - application/json
       responses:
         "200":
           description: OK
           schema:
             $ref: '#/definitions/dtos.LoginResponse'
       summary: Register
+      tags:
+      - auth
+produces:
+- application/json
+schemes:
+- http
 swagger: "2.0"
